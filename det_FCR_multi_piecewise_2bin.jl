@@ -13,7 +13,7 @@ using JuMP,  XLSX, CSV, DataFrames,  Gurobi, Dates, Statistics
 det_FCR_multi = Model(Gurobi.Optimizer)  # Create a model with Gurobi Optimizer
 
 ### IMPORT DATA
-raw_data = CSV.read("data_csv/input_deterministic.csv", DataFrame)
+raw_data = CSV.read("input_deterministic.csv", DataFrame)
 raw_data.date = Date.(raw_data.date, "m/d/y H:M")   # Parsing dates as datetime format
 
 # Slice years
