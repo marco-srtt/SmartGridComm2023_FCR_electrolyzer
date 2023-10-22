@@ -119,7 +119,7 @@ segments = collect(1:length(p_segment)-1)
 
 # Piecewise
 @constraint(det_FCR_multi, mutual_excl_segment[t in periods], sum(z_s[t, s] for s in segments) == z_on[t])        # Ensures mutual exclusion of the states
-@constraint(det_FCR_multi, power_segmentation[t in periods], sum(p_s[t, s] for s in segments) == x_elyzer[t] + P_sb * E * z_sb[t])
+@constraint(det_FCR_multi, power_segmentation[t in periods], x_elyzer[t] == sum(p_s[t, s] for s in segments)  + P_sb * E * z_sb[t])
 @constraint(det_FCR_multi, lower_segment_bound[t in periods, s in segments], p_s[t, s] >= z_s[t, s] * p_segment[s] * E)
 @constraint(det_FCR_multi, upper_segment_bound[t in periods, s in segments], p_s[t, s] <= z_s[t, s] * p_segment[s+1] * E)
 
